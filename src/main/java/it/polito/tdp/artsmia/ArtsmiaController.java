@@ -31,7 +31,7 @@ public class ArtsmiaController {
     private Button btnCalcolaPercorso;
 
     @FXML
-    private ComboBox<?> boxRuolo;
+    private ComboBox<String> boxRuolo;
 
     @FXML
     private TextField txtArtista;
@@ -48,17 +48,20 @@ public class ArtsmiaController {
     @FXML
     void doCalcolaPercorso(ActionEvent event) {
     	txtResult.clear();
-    	txtResult.appendText("Calcola percorso");
+    	txtResult.appendText("Calcola percorso\n");
+    	txtResult.appendText(model.calcolaPercorso(txtArtista.getText()));
     }
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
     	txtResult.clear();
-    	txtResult.appendText("Crea grafo");
+    	txtResult.appendText("Crea grafo\n");
+    	txtResult.appendText(model.creaGrafo(boxRuolo.getValue()));
     }
 
     public void setModel(Model model) {
     	this.model = model;
+    	  boxRuolo.getItems().addAll(model.roles());
     }
 
     
@@ -70,6 +73,6 @@ public class ArtsmiaController {
         assert boxRuolo != null : "fx:id=\"boxRuolo\" was not injected: check your FXML file 'Artsmia.fxml'.";
         assert txtArtista != null : "fx:id=\"txtArtista\" was not injected: check your FXML file 'Artsmia.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Artsmia.fxml'.";
-
+      
     }
 }
